@@ -1,0 +1,21 @@
+# secrets
+api_key.txt
+.env
+
+# runtime output
+server.log
+*.png
+!docs/*.png
+
+# environment
+.venv/
+__pycache__/
+*.pyc
+
+# user-supplied weights (large; keep the folders)
+models/*
+loras/*
+embeddings/*
+vae/*
+controlnets/*
+!*/.gitkeep
