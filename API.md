@@ -6,7 +6,7 @@ and asynchronous jobs with progress, previews and cancellation.
 
 | | |
 |---|---|
-| Base URL | `http://10.0.0.6:8000` |
+| Base URL | `http://<host>:8000` (the server listens on all interfaces) |
 | Protocol | HTTP/1.1, plain HTTP (no TLS) |
 | Request bodies | `application/json` (UTF-8) |
 | Interactive docs | `GET /docs` (Swagger UI) and `GET /openapi.json`. These need no key |
@@ -470,7 +470,7 @@ Peak VRAM is ~4.9 GB for txt2img, so very large sizes or a big hi-res scale can 
 
 Set these first:
 ```bash
-API=http://10.0.0.6:8000
+API=http://localhost:8000
 KEY=<your api key>
 ```
 
@@ -518,7 +518,7 @@ curl -s -X POST "$API/generate" -H "X-API-Key: $KEY" -H "Content-Type: applicati
 ```python
 import base64, time, requests
 
-API, KEY = "http://10.0.0.6:8000", "<your api key>"
+API, KEY = "http://localhost:8000", "<your api key>"
 H = {"X-API-Key": KEY}
 
 job = requests.post(f"{API}/jobs", headers=H, json={"prompt": "a castle on a hill", "num_images": 2}).json()
@@ -550,5 +550,5 @@ curl -s -X POST "$API/preprocess" -H "Authorization: Bearer $KEY" -H "Content-Ty
 ```powershell
 $h = @{ "X-API-Key" = "<your api key>" }
 $b = @{ prompt = "a red apple on a wooden table"; seed = 1 } | ConvertTo-Json -Depth 5
-Invoke-WebRequest http://10.0.0.6:8000/generate -Method Post -Headers $h -ContentType application/json -Body $b -OutFile apple.png
+Invoke-WebRequest http://localhost:8000/generate -Method Post -Headers $h -ContentType application/json -Body $b -OutFile apple.png
 ```
